@@ -109,7 +109,7 @@ jobs:
                 languages: ${{ matrix.language }}
                 # TODO#8: enable extended security + quality query suites
                 # queries: ???
-                queries: security-extended,security_and_quality
+                queries: security-extended,security-and-quality
                 # RESOURCE — CodeQL query suites:
                 # https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages#codeql-query-suites
                 #
@@ -180,7 +180,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: depcheck-report
-                part: reports/
+                path: reports/
 
     # GATE#3: Container/Image scanning via Trivy (SARIF + artifact)
     image-scanning:
