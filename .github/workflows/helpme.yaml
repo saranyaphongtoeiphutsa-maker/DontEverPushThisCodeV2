@@ -43,8 +43,8 @@ jobs:
                 # base: ???
                 # head: ???
                 # TODO#3: add extra_args flag to report ONLY VERIFIED secrets (reduce noise)
-                # extra_args: ???
-                base: ${{ github.event.repository.default_branch }}
+                # extra_args: ??? 
+                base: ${{ github.sha }}^
                 head: ${{ github.sha }}
                 extra_args: --only-verified
 
@@ -151,12 +151,12 @@ jobs:
                 project: 'DontEverPushThisCodeV2'
                 path: '.' # scan current directory (which should be the repo root after checkout)
                 # TODO#12: which format integrates with GitHub Security tab?
-                format: '???'
+                format: 'SARIF'
                 out: 'reports'
                 # TODO#13: set fail threshold — block on CVSS >= ?
                 # Hint: CVSS 7.0+ = HIGH
                 args: >
-                    --failOnCVSS ???
+                    --failOnCVSS 7
                     --enableRetired
 
             # TODO#14: upload Depcheck SARIF to GitHub Security tab
