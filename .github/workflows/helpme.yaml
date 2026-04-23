@@ -87,6 +87,11 @@ jobs:
               continue-on-error: true
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+              with:
+                  args: >
+                    -Dsonar.projectKey=DontEverPushThisCodeV2
+                    -Dsonar.sources=.
 
     # GATE#1b: SAST via CodeQL (results in GitHub Security tab)
     codeql-scan:
@@ -193,6 +198,10 @@ jobs:
 
             # TODO#16: build the Docker image tagged `my-app:latest`
             #          Hint: `docker build -t ...`
+
+            - name: Build Docker Image
+              run: |
+                docker build -t my-app:latest .
 
             - name: Trivy Scan
               uses: aquasecurity/trivy-action@master
